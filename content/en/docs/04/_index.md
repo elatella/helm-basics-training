@@ -174,6 +174,8 @@ Take a look at the official Helm documentation for a list of built in functions.
 
 ### values.yaml
 
+{{% alert  color="primary" %}}Replace **\<username>** with your username.{{% /alert %}}
+
 {{< highlight YAML "hl_lines=2-11 14-22" >}}
 {{% remoteFile "https://raw.githubusercontent.com/acend/helm-basic-chart/solution/helm-basic-chart/values.yaml" %}}
 {{< /highlight >}}
@@ -185,7 +187,7 @@ Take a look at the official Helm documentation for a list of built in functions.
 
 Execute following command to update our helm release.
 
-`helm upgrade myrelease --namespace <namespace>`
+`helm upgrade myrelease ./helm-basic-chart --namespace <namespace>`
 
 Finally, you can visit your application with the URL provided from the Route: `https://consumer-<username>.labapp.acend.ch/data`
 
@@ -204,6 +206,13 @@ When you open the URL you should see the producers data
 ```
 
 If you only see `Your new Cloud-Native application is ready!`, then you forgot to append the `/data`path to the URL.
+
+
+## Task {{% param sectionnumber %}}.4.1: Cleanup
+
+```bash
+helm delete myrelease --namespace <namespace>
+```
 
 
 ## Task {{% param sectionnumber %}}.5: Prepare another release
@@ -229,6 +238,10 @@ Open the `values-productive.yaml` and change following values.
 
 ## Task {{% param sectionnumber %}}.6: Install and verify production release
 
+
+{{% alert  color="primary" %}}Make sure you have deleted the previous installed release befor you install the production release. Otherwise you will have collisions because of duplicated resources in the same namespace.{{% /alert %}}
+
+
 Now we have prepared our values file for the production environment. Next we can install the chart again, but with a different name and different values.
 Execute the Helm install command and pass the new created production values as parameter.
 
@@ -246,7 +259,6 @@ You should see following output with de development and the production release
 
 ```
 NAME            NAMESPACE       REVISION        UPDATED                                         STATUS          CHART                   APP VERSION
-myrelease       default         1               2022-05-19 13:26:56.278026261 +0200 CEST        deployed        helm-basic-chart-0.1.0  1.16.0
 myrelease-prod  default         1               2022-05-19 13:26:36.570013792 +0200 CEST        deployed        helm-basic-chart-0.1.0  1.16.0
 ```
 
@@ -254,7 +266,6 @@ myrelease-prod  default         1               2022-05-19 13:26:36.570013792 +0
 ## Task {{% param sectionnumber %}}.7: Cleanup
 
 ```bash
-helm delete myrelease --namespace <namespace>
 helm delete myrelease-prod --namespace <namespace>
 ```
 
@@ -330,7 +341,7 @@ resources:
   requests:
     cpu: 50m
     memory: 100Mi
-serviceName: 
+serviceName:
 
 ```
 
@@ -518,7 +529,7 @@ When we add dependencies to your Helm Charts we can configure them in the parent
 
 ```yaml
 
-# parent/values.yaml 
+# parent/values.yaml
 nginx:
     url: samplehost
 
