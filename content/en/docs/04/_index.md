@@ -239,7 +239,7 @@ Open the `values-productive.yaml` and change following values.
 ## Task {{% param sectionnumber %}}.6: Install and verify production release
 
 
-{{% alert  color="primary" %}}Make sure you have deleted the previous installed release befor you install the production release. Otherwise you will have collisions because of duplicated resources in the same namespace.{{% /alert %}}
+{{% alert  color="primary" %}}Make sure you have deleted the previous installed release before you install the production release. Otherwise you will have collisions because of duplicated resources in the same namespace.{{% /alert %}}
 
 
 Now we have prepared our values file for the production environment. Next we can install the chart again, but with a different name and different values.
