@@ -83,7 +83,7 @@ Replace the same value in our `producer-ingress.yaml` file.
 {{< /highlight >}}
 
 
-Afterwards we can install our Helm Chart with following command.
+Afterwards we can install our Helm Chart with the following command.
 
 ```s
 helm install myrelease --namespace <namespace> ./helm-basic-chart
@@ -189,7 +189,7 @@ Execute following command to update our helm release.
 helm upgrade myrelease --namespace <namespace> ./helm-basic-chart
 ```
 
-Finally, you can visit your application with the URL provided from the Route: `https://consumer-<username>.{{% param labAppUrl %}}/data`
+Finally, you can visit your application with the URL provided from the route: `https://consumer-<username>.{{% param labAppUrl %}}/data`
 
 {{% alert  color="primary" %}}Replace **\<username>** with your username or get the URL from your route.{{% /alert %}}
 
